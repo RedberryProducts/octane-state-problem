@@ -16,7 +16,8 @@ class DeferableServiceProvider extends ServiceProvider implements DeferrableProv
      */
     public function register(): void
     {
-        $this->app->singleton('test', function () {
+        info("Deferable registered");
+        $this->app->singleton('defobj', function () {
             return new TestObj(new Dummy());
         });
     }
@@ -26,11 +27,16 @@ class DeferableServiceProvider extends ServiceProvider implements DeferrableProv
      */
     public function boot(): void
     {
-        app()->make('test');
+        info("Deferable booted");
     }
 
-    public function when()
+    // public function when()
+    // {
+    //     return [RequestReceived::class];
+    // }
+
+    public function provides()
     {
-        return [RequestReceived::class];
+        return ['defobj'];
     }
 }

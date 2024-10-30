@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        info("AppServiceProvider registered");
         $this->app->singleton(Dummy::class, function () {
             return new Dummy();
         });
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        info("AppServiceProvider booted");
         app(TestObj::class); # TestObj:class gets resolved during boot process, so sandbox will use original instance.
+        # app('defobj');
     }
 }

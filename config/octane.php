@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\AppServiceProvider;
 use Laravel\Octane\Contracts\OperationTerminated;
 use Laravel\Octane\Events\RequestHandled;
 use Laravel\Octane\Events\RequestReceived;
@@ -117,6 +118,21 @@ return [
         WorkerStopping::class => [
             CloseMonologHandlers::class,
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Operation Scoped ServiceProviders
+    |--------------------------------------------------------------------------
+    |
+    | Here you can list service providers which should be registered on each 
+    | operation, rather than during boot process.
+    |
+    */
+
+    'op_service_providers' => [
+        AppServiceProvider::class,
+        App\Providers\DeferableServiceProvider::class
     ],
 
     /*

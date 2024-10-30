@@ -19,3 +19,7 @@ Route::get('/inc', function () {
     app(TestObj::class)->getObj()->inc();
     return [app(TestObj::class)->getDate(), app(TestObj::class)->getObj()->get()];
 });
+
+Route::get('/def', function () {
+    return [app('defobj')->getDate(), app('defobj')->getObj()->get()];
+});
